@@ -56,6 +56,7 @@ function koren() {
         display.value = 0;
     }
 }
+
 describe("pow", function() {
     it("корень из 4  = 2", function() {
         assert.equal(Math.sqrt(4), 2);
