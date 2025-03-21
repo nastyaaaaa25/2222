@@ -2,44 +2,60 @@ function appendToDisplay(value) {
     const display = document.getElementById('display');
     display.value += value;
 }
+
 function clearDisplay() {
     const display = document.getElementById('display');
     display.value = '';
 }
+
 function calculateResult() {
     const display = document.getElementById('display');
     try {
-        display.value = eval(display.value);
+        const result = eval(display.value);
+        // Проверка деления на ноль
+        if (result === Infinity || result === -Infinity) {
+            display.value = '0';
+        } else {
+            display.value = result;
+        }
     } catch (error) {
         display.value = 'Ошибка';
     }
 }
-function calculatePrecentage(){
+
+function calculatePercentage() {
     const display = document.getElementById('display');
     try {
-        display.value = eval(display.value) / 100
-    }catch (error) {
-        display.value = 'Ошибка';
-    }
-}
-function raisePower(){
-    const display = document.getElementById('display');
-    let value = display.value
-    try {
-        display.value = Math.pow(eval(value), 2)
-    }catch (error) {
-        display.value = 'Ошибка';
-    }
-}
-function koren(){
-    const display = document.getElementById('display');
-    try {
-        display.value = Math.sqrt(eval(display.value))
-    }catch (error) {
+        display.value = eval(display.value) / 100;
+    } catch (error) {
         display.value = 'Ошибка';
     }
 }
 
+function raisePower() {
+    const display = document.getElementById('display');
+    let value = display.value;
+    try {
+        display.value = Math.pow(eval(value), 2);
+    } catch (error) {
+        display.value = 'Ошибка';
+    }
+}
+
+function koren() {
+    const display = document.getElementById('display');
+    try {
+        const value = eval(display.value);
+        // Проверка на отрицательное значение
+        if (value < 0) {
+            display.value = 'Ошибка'; // или можно задать другое сообщение
+        } else {
+            display.value = Math.sqrt(value);
+        }
+    } catch (error) {
+        display.value = 0;
+    }
+}
 describe("pow", function() {
     it("корень из 4  = 2", function() {
         assert.equal(Math.sqrt(4), 2);
